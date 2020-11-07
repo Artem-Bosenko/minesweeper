@@ -2,8 +2,8 @@
 
 using namespace sf;
 
-int w = 32;
 
+int w = 32;
 Game::Game() : Field()
 {
 	x = 0, y = 0, counter = 0;
@@ -80,7 +80,7 @@ void Game::ShowNextCell()
 		if (FieldView[n - 2][n - 2] != 9 && isOpen[n - 2][n - 2] == false) { FieldView[n - 2][n - 2] = FieldLogic[n - 2][n - 2]; isOpen[n - 2][n - 2] = true; counter++; }
 	}
 
-	//линии
+	//Г«ГЁГ­ГЁГЁ
 	if (FieldView[0][y] == 0 && x == 0 && y != 0 && y != n - 1)
 	{
 		if (FieldView[x][y + 1] != 9 && isOpen[x][y + 1] == false) { FieldView[x][y + 1] = FieldLogic[x][y + 1]; isOpen[x][y + 1] = true; counter++; }
@@ -133,7 +133,7 @@ void Game::game()
 	t.loadFromFile("..\\saper.jpg");
 	Sprite s(t);
 
-	//Подсчет мин вокруг каждой кле
+	//ГЏГ®Г¤Г±Г·ГҐГІ Г¬ГЁГ­ ГўГ®ГЄГ°ГіГЈ ГЄГ Г¦Г¤Г®Г© ГЄГ«ГҐ
 	calc_mine();
 
 	Font font;
@@ -159,9 +159,9 @@ void Game::game()
 			{
 				app.close();
 			}
-			//Была нажата кнопка мыши…?
+			//ГЃГ»Г«Г  Г­Г Г¦Г ГІГ  ГЄГ­Г®ГЇГЄГ  Г¬Г»ГёГЁВ…?
 			if (event.type == Event::MouseButtonPressed)
-				//Если это - левая кнопка мыши, то открываем клетку
+				//Г…Г±Г«ГЁ ГЅГІГ® - Г«ГҐГўГ Гї ГЄГ­Г®ГЇГЄГ  Г¬Г»ГёГЁ, ГІГ® Г®ГІГЄГ°Г»ГўГ ГҐГ¬ ГЄГ«ГҐГІГЄГі
 				if (event.key.code == Mouse::Left)
 				{
 					FieldView[x][y] = FieldLogic[x][y];
@@ -172,7 +172,7 @@ void Game::game()
 					}
 					ShowNextCell();
 				}
-			//Если это – правая кнопка мыши, то отображаем флажок
+			//Г…Г±Г«ГЁ ГЅГІГ® В– ГЇГ°Г ГўГ Гї ГЄГ­Г®ГЇГЄГ  Г¬Г»ГёГЁ, ГІГ® Г®ГІГ®ГЎГ°Г Г¦Г ГҐГ¬ ГґГ«Г Г¦Г®ГЄ
 				else if (event.key.code == Mouse::Right)
 				{
 					if (isOpen[x][y] == false)FieldView[x][y] = 11;
@@ -193,16 +193,16 @@ void Game::game()
 
 				if (isLost(i, j) == true)
 				{
-					// метод для поражения
-					text.setString("Вы проиграли");
+					// Г¬ГҐГІГ®Г¤ Г¤Г«Гї ГЇГ®Г°Г Г¦ГҐГ­ГЁГї
+					text.setString("Г‚Г» ГЇГ°Г®ГЁГЈГ°Г Г«ГЁ");
 					text.setPosition(app.getView().getCenter().x - 9 * n, app.getView().getCenter().y - 3 * n);
 					//text.setColor(Color::Cyan);
 					app.draw(text);
 				}
 				if (isWin() == true)
 				{
-					// метод для победы
-					text.setString("Вы ВЫИГРАЛИ");
+					// Г¬ГҐГІГ®Г¤ Г¤Г«Гї ГЇГ®ГЎГҐГ¤Г»
+					text.setString("Г‚Г» Г‚Г›Г€ГѓГђГЂГ‹Г€");
 					text.setPosition(app.getView().getCenter().x - 9 * n, app.getView().getCenter().y - 3 * n);
 					app.clear(Color::Yellow);
 					app.draw(text);
